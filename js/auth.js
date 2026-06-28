@@ -1,3 +1,4 @@
+
 /* ============================================
    AURA — auth.js
    Autenticación real con Supabase Auth
