@@ -1,0 +1,186 @@
+/* ============================================
+   AURA — Design Tokens / Variables
+   Glassmorphism & Apple-style blur
+   ============================================ */
+
+:root {
+  /* === COLORES PRIMARIOS === */
+  --color-primary:        #7C3AED;
+  --color-primary-light:  #A78BFA;
+  --color-primary-dark:   #5B21B6;
+  --color-primary-soft:   #EDE9FE;
+
+  /* === COLORES SECUNDARIOS === */
+  --color-accent:         #EC4899;
+  --color-accent-light:   #F9A8D4;
+  --color-accent-soft:    #FCE7F3;
+
+  /* === FONDOS === */
+  --color-bg:             #F8F7FF;
+  --color-bg-secondary:   #F0EDFF;
+  --color-bg-card:        rgba(255, 255, 255, 0.72);
+  --color-bg-input:       rgba(237, 233, 254, 0.6);
+  --color-bg-overlay:     rgba(124, 58, 237, 0.07);
+
+  /* === GLASS (estilo Apple / iOS) === */
+  --glass-bg:             rgba(255, 255, 255, 0.65);
+  --glass-bg-strong:      rgba(255, 255, 255, 0.82);
+  --glass-bg-dark:        rgba(15, 15, 26, 0.72);
+  --glass-border:         rgba(255, 255, 255, 0.45);
+  --glass-border-strong:  rgba(255, 255, 255, 0.7);
+  --glass-blur:           blur(24px);
+  --glass-blur-sm:        blur(12px);
+  --glass-blur-lg:        blur(40px);
+  --glass-saturate:       saturate(180%);
+
+  /* === TEXTO === */
+  --color-text-primary:   #1A1A2E;
+  --color-text-secondary: #6B6B8A;
+  --color-text-muted:     #A0A0B8;
+  --color-text-inverse:   #FFFFFF;
+
+  /* === BORDES === */
+  --color-border:         rgba(196, 181, 253, 0.35);
+  --color-border-strong:  #C4B5FD;
+
+  /* === ESTADOS === */
+  --color-success:        #10B981;
+  --color-warning:        #F59E0B;
+  --color-error:          #EF4444;
+  --color-info:           #3B82F6;
+
+  /* === GRADIENTES === */
+  --gradient-primary:     linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
+  --gradient-soft:        linear-gradient(135deg, #EDE9FE 0%, #FCE7F3 100%);
+  --gradient-card:        linear-gradient(180deg, rgba(124,58,237,0.05) 0%, rgba(255,255,255,0) 100%);
+  --gradient-orb:         radial-gradient(circle at 30% 40%, #A78BFA, #7C3AED, #5B21B6);
+  --gradient-mesh:        radial-gradient(ellipse at 20% 20%, rgba(124,58,237,0.15) 0%, transparent 60%),
+                          radial-gradient(ellipse at 80% 80%, rgba(236,72,153,0.12) 0%, transparent 60%);
+
+  /* === TIPOGRAFÍA === */
+  --font-display: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body:    'SF Pro Text',    -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:    'SF Mono', 'Fira Code', monospace;
+
+  --text-xs:   11px;
+  --text-sm:   13px;
+  --text-base: 15px;
+  --text-md:   17px;
+  --text-lg:   20px;
+  --text-xl:   24px;
+  --text-2xl:  30px;
+  --text-3xl:  38px;
+
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* === ESPACIADO === */
+  --space-1:  4px;  --space-2:  8px;  --space-3:  12px;
+  --space-4: 16px;  --space-5: 20px;  --space-6:  24px;
+  --space-8: 32px;  --space-10:40px;  --space-12: 48px;
+
+  /* === RADIOS === */
+  --radius-sm:   8px;  --radius-md:   12px;
+  --radius-lg:  16px;  --radius-xl:   24px;
+  --radius-2xl: 32px;  --radius-full: 9999px;
+
+  /* === SOMBRAS === */
+  --shadow-sm:   0 1px 4px rgba(124,58,237,0.08), 0 0 0 0.5px rgba(124,58,237,0.06);
+  --shadow-md:   0 4px 20px rgba(124,58,237,0.14), 0 1px 4px rgba(124,58,237,0.06);
+  --shadow-lg:   0 12px 48px rgba(124,58,237,0.18), 0 4px 12px rgba(124,58,237,0.08);
+  --shadow-xl:   0 24px 72px rgba(124,58,237,0.22), 0 8px 24px rgba(124,58,237,0.10);
+  --shadow-glow: 0 0 24px rgba(124,58,237,0.45), 0 0 8px rgba(167,139,250,0.3);
+  --shadow-card: 0 2px 16px rgba(124,58,237,0.08), 0 0 0 0.5px rgba(196,181,253,0.3);
+  --shadow-glass:0 8px 32px rgba(124,58,237,0.12), inset 0 1px 0 rgba(255,255,255,0.6);
+
+  /* === TRANSICIONES === */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in:     cubic-bezier(0.4, 0, 1, 1);
+  --ease-out:    cubic-bezier(0, 0, 0.2, 1);
+
+  --duration-fast:   150ms;
+  --duration-normal: 250ms;
+  --duration-slow:   400ms;
+  --duration-slower: 600ms;
+
+  /* === LAYOUT === */
+  --nav-height-top:    56px;
+  --nav-height-bottom: 72px;
+  --safe-top:    env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --max-width:   480px;
+
+  /* === Z-INDEX === */
+  --z-base:   1;   --z-card:   10;  --z-sticky: 100;
+  --z-nav:  200;   --z-modal: 300;  --z-toast:  400;
+  --z-ai-btn: 500; --z-splash: 999;
+}
+
+/* ── Fondo con mesh gradient suave ─────────────── */
+body {
+  background: var(--color-bg);
+  background-image: var(--gradient-mesh);
+  background-attachment: fixed;
+}
+
+/* ── Tarjetas con glass ─────────────────────────── */
+.card,
+.eco-post {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur-sm) var(--glass-saturate);
+  -webkit-backdrop-filter: var(--glass-blur-sm) var(--glass-saturate);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+}
+
+/* ============================================
+   TEMA OSCURO
+   ============================================ */
+.theme-dark {
+  --color-primary:        #A78BFA;
+  --color-primary-light:  #C4B5FD;
+  --color-primary-dark:   #7C3AED;
+  --color-primary-soft:   #2D1B69;
+
+  --color-bg:             #0A0A18;
+  --color-bg-secondary:   #12122A;
+  --color-bg-card:        rgba(30, 27, 51, 0.75);
+  --color-bg-input:       rgba(45, 42, 69, 0.7);
+  --color-bg-overlay:     rgba(167,139,250,0.08);
+
+  --glass-bg:             rgba(18, 18, 36, 0.72);
+  --glass-bg-strong:      rgba(30, 27, 51, 0.88);
+  --glass-border:         rgba(124, 58, 237, 0.2);
+  --glass-border-strong:  rgba(167, 139, 250, 0.3);
+
+  --gradient-mesh:        radial-gradient(ellipse at 20% 20%, rgba(124,58,237,0.2) 0%, transparent 60%),
+                          radial-gradient(ellipse at 80% 80%, rgba(236,72,153,0.15) 0%, transparent 60%);
+
+  --color-text-primary:   #F0EDFF;
+  --color-text-secondary: #A0A0C0;
+  --color-text-muted:     #6B6B8A;
+
+  --color-border:         rgba(45, 42, 69, 0.8);
+  --color-border-strong:  #4C3D8F;
+
+  --shadow-sm:   0 1px 4px rgba(0,0,0,0.4);
+  --shadow-md:   0 4px 20px rgba(0,0,0,0.5);
+  --shadow-lg:   0 12px 48px rgba(0,0,0,0.6);
+  --shadow-card: 0 2px 16px rgba(0,0,0,0.4);
+  --shadow-glass:0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.theme-dark body,
+body.theme-dark {
+  background: var(--color-bg);
+  background-image: var(--gradient-mesh);
+}
+
+.theme-dark .top-bar,
+.theme-dark .bottom-nav {
+  background: var(--glass-bg) !important;
+  border-color: var(--glass-border) !important;
+}
