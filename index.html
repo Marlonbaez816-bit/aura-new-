@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#7C3AED" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Aura" />
+  <title>Aura</title>
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- CSS en orden correcto -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/typography.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/themes.css" />
+
+  <style>
+    /* ── Ajustes globales iOS / glass ───────────── */
+    * { -webkit-tap-highlight-color: transparent; }
+
+    html, body {
+      height: 100%;
+      overscroll-behavior: none;
+    }
+
+    /* Fondo con noise suave encima del mesh */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.022'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Top bar glass mejorada */
+    .top-bar {
+      background: rgba(248, 247, 255, 0.78) !important;
+      backdrop-filter: blur(28px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+      border-bottom: 1px solid rgba(196, 181, 253, 0.3) !important;
+    }
+
+    /* Bottom nav glass mejorada */
+    .bottom-nav {
+      background: rgba(248, 247, 255, 0.82) !important;
+      backdrop-filter: blur(28px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+      border-top: 1px solid rgba(196, 181, 253, 0.3) !important;
+    }
+
+    /* Modal glass */
+    .modal {
+      background: rgba(255, 255, 255, 0.88) !important;
+      backdrop-filter: blur(40px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.6) !important;
+      box-shadow: 0 -8px 40px rgba(124,58,237,0.12), inset 0 1px 0 rgba(255,255,255,0.8) !important;
+    }
+
+    /* Splash mejorado */
+    .splash {
+      background: linear-gradient(160deg, #F8F7FF 0%, #EDE9FE 50%, #FCE7F3 100%);
+    }
+
+    /* Eco post con glass sutil */
+    .eco-post {
+      background: rgba(255,255,255,0.68);
+      backdrop-filter: blur(12px) saturate(160%);
+      -webkit-backdrop-filter: blur(12px) saturate(160%);
+      border-bottom: 1px solid rgba(196,181,253,0.25);
+    }
+
+    /* Input glass */
+    .input-field {
+      background: rgba(237, 233, 254, 0.55) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(196,181,253,0.4) !important;
+    }
+
+    /* Card glass */
+    .card {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+
+    /* Tema oscuro — glass oscuro */
+    .theme-dark .top-bar,
+    .theme-midnight .top-bar {
+      background: rgba(10, 10, 24, 0.8) !important;
+      border-bottom: 1px solid rgba(124,58,237,0.2) !important;
+    }
+
+    .theme-dark .bottom-nav,
+    .theme-midnight .bottom-nav {
+      background: rgba(10, 10, 24, 0.85) !important;
+      border-top: 1px solid rgba(124,58,237,0.2) !important;
+    }
+
+    .theme-dark .modal,
+    .theme-midnight .modal {
+      background: rgba(18, 18, 36, 0.9) !important;
+      border: 1px solid rgba(124,58,237,0.25) !important;
+    }
+
+    .theme-dark .eco-post,
+    .theme-midnight .eco-post {
+      background: rgba(18,18,36,0.65);
+      border-bottom: 1px solid rgba(124,58,237,0.15);
+    }
+
+    .theme-dark .input-field,
+    .theme-midnight .input-field {
+      background: rgba(45, 42, 69, 0.6) !important;
+      border: 1.5px solid rgba(124,58,237,0.3) !important;
+    }
+
+    /* Orb IA flotante — pulse glow */
+    .aura-ai__orb {
+      box-shadow:
+        0 0 0 0 rgba(124,58,237,0.4),
+        0 4px 20px rgba(124,58,237,0.35) !important;
+    }
+
+    /* Botón crear — gradient animado */
+    .create-btn {
+      background: linear-gradient(135deg, #7C3AED, #EC4899, #7C3AED) !important;
+      background-size: 200% 200% !important;
+      animation: gradientShift 4s ease infinite !important;
+    }
+
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
+
+<body class="theme-default" data-page="splash">
+
+  <!-- ── SPLASH ──────────────────────────────── -->
+  <div id="splash-screen" class="splash">
+    <div class="splash__logo">
+      <div class="splash__orb"></div>
+      <span class="splash__wordmark">Aura</span>
+    </div>
+  </div>
+
+  <!-- ── APP SHELL ────────────────────────────── -->
+  <div id="app" class="app hidden">
+
+    <!-- TOP BAR -->
+    <header id="top-bar" class="top-bar">
+      <div class="top-bar__left">
+        <button class="icon-btn" id="btn-logo" onclick="AuraRouter.navigate('home')">
+          <span class="aura-logo-sm">✦</span>
+        </button>
+      </div>
+      <div class="top-bar__center">
+        <span class="top-bar__title" id="page-title">Inicio</span>
+      </div>
+      <div class="top-bar__right">
+        <button class="icon-btn" id="btn-search" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </button>
+        <button class="icon-btn" id="btn-notifications" aria-label="Notificaciones">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <span class="badge" id="notif-badge" style="display:none;">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main id="main-content" class="main-content"></main>
+
+    <!-- BOTTOM NAV -->
+    <nav id="bottom-nav" class="bottom-nav">
+      <button class="nav-item active" data-page="home" aria-label="Inicio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span>Inicio</span>
+      </button>
+
+      <button class="nav-item" data-page="ecos" aria-label="Ecos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="23 7 16 12 23 17 23 7"/>
+          <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+        </svg>
+        <span>Ecos</span>
+      </button>
+
+      <!-- BOTÓN CREAR (centro) -->
+      <button class="nav-item nav-item--create" data-action="create" aria-label="Crear">
+        <div class="create-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </div>
+      </button>
+
+      <button class="nav-item" data-page="chat" aria-label="Mensajes">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <span>Chats</span>
+      </button>
+
+      <button class="nav-item" data-page="profile" aria-label="Perfil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span>Perfil</span>
+      </button>
+    </nav>
+
+    <!-- BOTÓN IA FLOTANTE -->
+    <div id="aura-ai-btn" class="aura-ai" draggable="true" title="Asistente Aura IA">
+      <div class="aura-ai__orb">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+          <line x1="12" y1="19" x2="12" y2="23"/>
+          <line x1="8" y1="23" x2="16" y2="23"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- MODALES -->
+    <div id="modals" class="modals-container" style="pointer-events:none;"></div>
+
+    <!-- TOASTS -->
+    <div id="toasts" class="toasts-container" aria-live="polite"></div>
+
+  </div><!-- /#app -->
+
+  <!-- ── SCRIPTS — el orden importa ──────────── -->
+  <script src="js/modules/config.js"></script>
+  <script src="js/modules/store.js"></script>
+  <script src="js/modules/theme.js"></script>
+  <script src="js/modules/router.js"></script>
+  <script src="js/modules/toast.js"></script>
+  <script src="js/modules/modal.js"></script>
+  <script src="js/modules/ai-assistant.js"></script>
+  <script src="js/modules/attention.js"></script>
+  <script src="js/modules/gyroscope.js"></script>
+  <script src="js/modules/auth.js"></script>
+  <script src="js/modules/feed.js"></script>
+  <script src="js/modules/ecos.js"></script>
+  <script src="js/modules/chat.js"></script>
+  <script src="js/modules/communities.js"></script>
+  <script src="js/modules/profile.js"></script>
+  <script src="js/modules/karma.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
